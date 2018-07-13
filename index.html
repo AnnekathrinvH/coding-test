@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+    <head>
+        <link type="text/css" rel="stylesheet" href="style.css">
+        <title>Kundendaten</title>
+    </head>
+
+    <body>
+        <h1>Kundendaten</h1>
+        <div id="main">
+        </div>
+
+        <div id="allData" style="display: none">
+            <div id="dataContainer">
+
+                    <script id="allCustomerData" type="text/handlebars">
+                        <table>
+                            <tr>
+                                <th>company</th>
+                                <th>industry</th>
+                            </tr>
+                            {{#.}}
+                                <tr>
+                                    <td><a class = "links" href="#main/{{_id}}">{{company}}</a></td>
+                                    <td>{{industry}}</td>
+                            {{/.}}
+                            </tr>
+
+                        </table>
+                    </script>
+            </div>
+        </div>
+
+        <div id="detailPage" style="display: none">
+            <div id="dataContainer2">
+                    <script id="singleCustomerData" type="text/handlebars">
+                        <table>
+                            <tr>
+                                <th>company</th>
+                                <th>industry</th>
+                                <th>about</th>
+                                <th colspan = "3">projects</th>
+                            </tr>
+                            {{#.}}
+                                <tr>
+                                    <td>{{company}}</td>
+                                    <td>{{industry}}</td>
+                                    <td>{{about}}</td>
+                                    {{#each projects}}
+                                        <td>{{name}}</td>
+                                    {{/each}}
+                            {{/.}}
+                            </tr>
+
+                        </table>
+                    </script>
+            </div>
+        </div>
+
+        <div id="editPage" style="display: none">
+            <div id="dataContainer3">
+                    <script id="editCustomerData" type="text/handlebars">
+                        <form action="/my-handling-form-page" method="post">
+
+                            {{#.}}
+                                    <td>{{company}}</td>
+                                    <td>{{industry}}</td>
+                                    <td>{{about}}</td>
+                                    {{#each projects}}
+                                        <td>{{name}}</td>
+                                    {{/each}}
+                            {{/.}}
+                            <div>
+                                <label for="msg">Message:</label>
+                                <textarea id="msg" name="user_message"></textarea>
+                            </div>
+                            <div class="button">
+                                <button type="submit">Send your message</button>
+                            </div
+                        </form>
+                    </script>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+        <script src="assets/underscore.js"></script>
+        <script src="assets/backbone.js"></script>
+
+        <script src="index.js"></script>
+    </body>
+</html>
