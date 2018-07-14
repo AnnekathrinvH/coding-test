@@ -17,7 +17,14 @@
                         <table>
                             <tr>
                                 <th>company</th>
-                                <th>industry</th>
+                                <th>
+                                <select name="industry" id="select">
+                                <option disabled selected value>industry</option>
+                                            {{#industryArray}}
+                                            <option>{{color}}</option>
+                                            {{/industryArray}}
+                                        </select>
+                                </th>
                             </tr>
                             {{#.}}
                                 <tr>
@@ -25,8 +32,12 @@
                                     <td>{{industry}}</td>
                             {{/.}}
                             </tr>
-
                         </table>
+
+                        <div class="button">
+                            <button id="newCustomerButton">new customer</button>
+                        </div>
+
                     </script>
             </div>
         </div>
@@ -34,25 +45,24 @@
         <div id="detailPage" style="display: none">
             <div id="dataContainer2">
                     <script id="singleCustomerData" type="text/handlebars">
-                        <table>
-                            <tr>
-                                <th>company</th>
-                                <th>industry</th>
-                                <th>about</th>
-                                <th colspan = "3">projects</th>
-                            </tr>
-                            {{#.}}
-                                <tr>
-                                    <td>{{company}}</td>
-                                    <td>{{industry}}</td>
-                                    <td>{{about}}</td>
-                                    {{#each projects}}
-                                        <td>{{name}}</td>
-                                    {{/each}}
-                            {{/.}}
-                            </tr>
+                    {{#.}}
 
-                        </table>
+                        <h2>{{company}}</h2>
+                        <ul>
+                                <li>industry: {{industry}}</li>
+                                <li>about: {{about}}</li>
+                                <li>projects:</li>
+
+                                    {{#each projects}}
+                                        <li>{{name}}</li>
+                                    {{/each}}
+
+                                    <div class="button">
+                                        <button class="editButton" id='{{_id}}'>Edit</button>
+                                    </div>
+                        {{/.}}
+
+
                     </script>
             </div>
         </div>
@@ -63,23 +73,54 @@
                         <form action="/my-handling-form-page" method="post">
 
                             {{#.}}
-                                    <td>{{company}}</td>
-                                    <td>{{industry}}</td>
-                                    <td>{{about}}</td>
-                                    {{#each projects}}
-                                        <td>{{name}}</td>
-                                    {{/each}}
+                                <div>
+                                    <label for="company">company:</label>
+                                    <textarea id="company" name="companyInput">{{company}}</textarea>
+                                </div>
+                                <div>
+                                    <label for="industry">industry:</label>
+                                    <textarea id="industry" name="industryInput">{{industry}}</textarea>
+                                </div>
+                                <div>
+                                    <label for="about">about:</label>
+                                    <textarea id="about" name="aboutInput">{{about}}</textarea>
+                                </div>
+
+                                <div class="button">
+                                <button type= 'button' class="submitButton" id='{{_id}}'>submit</button>
+                                </div>
                             {{/.}}
-                            <div>
-                                <label for="msg">Message:</label>
-                                <textarea id="msg" name="user_message"></textarea>
-                            </div>
-                            <div class="button">
-                                <button type="submit">Send your message</button>
-                            </div
+
                         </form>
                     </script>
             </div>
+        </div>
+
+        <div id="newCustomerPage" style="display: none">
+
+                        <form>
+                                <div>
+                                    <label for="company">company:</label>
+                                    <textarea id="company" name="companyInput"></textarea>
+                                </div>
+                                <div>
+                                    <label for="id">company:</label>
+                                    <textarea id="id" name="idInput"></textarea>
+                                </div>
+                                <div>
+                                    <label for="industry">industry:</label>
+                                    <textarea id="industry" name="industryInput"></textarea>
+                                </div>
+                                <div>
+                                    <label for="about">about:</label>
+                                    <textarea id="about" name="aboutInput"></textarea>
+                                </div>
+
+                                <div class="button">
+                                <button type= 'button' class="submitButton">submit</button>
+                                </div>
+                        </form>
+
         </div>
 
         <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
