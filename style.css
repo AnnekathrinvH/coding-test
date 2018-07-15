@@ -1,0 +1,67 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
+    text-align: center;
+}
+h1{
+    padding: 1em;
+}
+#main{
+    text-align: center;
+}
+#dataContainer{
+    text-align: center;
+    margin: 0 auto;
+    width: max-content;
+}
+table{
+    padding: 1em;
+    font-size: 25px;
+
+}
+th{
+    font-size: 30px;
+    padding: 0.6em;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-bottom: 2px solid;
+    text-align: left;
+
+
+}
+#select{
+    font-size: 30px;
+    background-color: white;
+
+}
+td{
+    font-size: 25px;
+    padding: 0.6em;
+    padding-left: 1em;
+    padding-right: 1em;
+    text-align: left;
+}
+
+a{
+    text-decoration: none;
+}
+button{
+    background-color: white;
+    font-size: 25px;
+    border: 0.5px black solid;
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 20px;
+}
+#singleCustomerTable{
+    border-bottom: none white;
+}
+textarea{
+    width: 200px;
+    height: 70px;
+}
+#newCustomerPage{
+    text-align: center;
+}

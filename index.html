@@ -2,11 +2,11 @@
 <html>
     <head>
         <link type="text/css" rel="stylesheet" href="style.css">
-        <title>Kundendaten</title>
+        <title>Active Customers</title>
     </head>
 
     <body>
-        <h1>Kundendaten</h1>
+        <h1>Active Customers</h1>
         <div id="main">
         </div>
 
@@ -14,24 +14,27 @@
             <div id="dataContainer">
 
                     <script id="allCustomerData" type="text/handlebars">
-                        <table>
+                        <table id="allDataTable">
                             <tr>
-                                <th>company</th>
+                                <th>Company</th>
                                 <th>
-                                <select name="industry" id="select">
-                                <option disabled selected value>industry</option>
-                                            {{#industryArray}}
-                                            <option>{{color}}</option>
-                                            {{/industryArray}}
-                                        </select>
+                                    <select name="industry" id="select">
+                                        <option>Industry</option>
+                                        <option>show all</option>
+                                        {{#industryArray}}
+                                            <option>{{industry}}</option>
+                                        {{/industryArray}}
+                                    </select>
                                 </th>
                             </tr>
-                            {{#.}}
+
+                            {{#dataArray}}
                                 <tr>
                                     <td><a class = "links" href="#main/{{_id}}">{{company}}</a></td>
                                     <td>{{industry}}</td>
-                            {{/.}}
-                            </tr>
+                                </tr>
+                            {{/dataArray}}
+
                         </table>
 
                         <div class="button">
@@ -48,19 +51,32 @@
                     {{#.}}
 
                         <h2>{{company}}</h2>
-                        <ul>
-                                <li>industry: {{industry}}</li>
-                                <li>about: {{about}}</li>
-                                <li>projects:</li>
+                        <table id="singleCustomerTable">
+                            <tr>
+                                <td colspan='2'>Industry: {{industry}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan='2'>{{about}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan='2'>Projects</td>
+                            </tr>
+                            <tr>
+                                <td>Name:</td>
+                                <td>Enddate:</td>
+                            </tr>
+                            {{#each projects}}
+                                <tr>
+                                    <td>{{name}}</td>
+                                    <td>{{enddate}}</td>
+                                </tr>
+                            {{/each}}
+                        </table>
 
-                                    {{#each projects}}
-                                        <li>{{name}}</li>
-                                    {{/each}}
-
-                                    <div class="button">
-                                        <button class="editButton" id='{{_id}}'>Edit</button>
-                                    </div>
-                        {{/.}}
+                            <div class="button">
+                                <button class="editButton" id='{{_id}}'>Edit</button>
+                            </div>
+                    {{/.}}
 
 
                     </script>
@@ -69,58 +85,71 @@
 
         <div id="editPage" style="display: none">
             <div id="dataContainer3">
-                    <script id="editCustomerData" type="text/handlebars">
-                        <form action="/my-handling-form-page" method="post">
+                <script id="editCustomerData" type="text/handlebars">
+                    <form action="/my-handling-form-page" method="post">
 
-                            {{#.}}
-                                <div>
-                                    <label for="company">company:</label>
-                                    <textarea id="company" name="companyInput">{{company}}</textarea>
-                                </div>
-                                <div>
-                                    <label for="industry">industry:</label>
-                                    <textarea id="industry" name="industryInput">{{industry}}</textarea>
-                                </div>
-                                <div>
-                                    <label for="about">about:</label>
-                                    <textarea id="about" name="aboutInput">{{about}}</textarea>
-                                </div>
+                        {{#.}}
+                            <div>
+                                <label for="company">company:</label>
+                                <textarea id="company" name="companyInput">{{company}}</textarea>
+                            </div>
+                            <div>
+                                <label for="industry">industry:</label>
+                                <textarea id="industry" name="industryInput">{{industry}}</textarea>
+                            </div>
+                            <div>
+                                <label for="about">about:</label>
+                                <textarea id="about" name="aboutInput">{{about}}</textarea>
+                            </div>
 
-                                <div class="button">
-                                <button type= 'button' class="submitButton" id='{{_id}}'>submit</button>
-                                </div>
-                            {{/.}}
+                            <div class="button">
+                            <button type= 'button' class="submitButton" id='{{_id}}'>submit</button>
+                            </div>
+                        {{/.}}
 
-                        </form>
-                    </script>
+                    </form>
+                </script>
             </div>
         </div>
 
         <div id="newCustomerPage" style="display: none">
-
-                        <form>
-                                <div>
-                                    <label for="company">company:</label>
-                                    <textarea id="company" name="companyInput"></textarea>
-                                </div>
-                                <div>
-                                    <label for="id">company:</label>
-                                    <textarea id="id" name="idInput"></textarea>
-                                </div>
-                                <div>
-                                    <label for="industry">industry:</label>
-                                    <textarea id="industry" name="industryInput"></textarea>
-                                </div>
-                                <div>
-                                    <label for="about">about:</label>
-                                    <textarea id="about" name="aboutInput"></textarea>
-                                </div>
-
-                                <div class="button">
-                                <button type= 'button' class="submitButton">submit</button>
-                                </div>
-                        </form>
-
+            <table>
+                <tr>
+                    <td>
+                        <label for="company">Company:</label>
+                    </td>
+                    <td>
+                        <textarea id="company" name="companyInput"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="id">ID:</label>
+                    </td>
+                    <td>
+                        <textarea id="id" name="idInput"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="industry">Industry:</label>
+                    </td>
+                    <td>
+                        <textarea id="industry" name="industryInput"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="about">About:</label>
+                    </td>
+                    <td>
+                        <textarea id="about" name="aboutInput"></textarea>
+                    </td>
+                </tr>
+            </table>
+            <div class="button">
+                <button type= 'button' class="submitButton">submit</button>
+            </div>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
