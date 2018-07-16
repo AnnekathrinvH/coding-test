@@ -128,6 +128,12 @@
                 view.undelegateEvents();
                 window.location.hash = 'new';
             },
+            'click .links': function(event) {
+                var view = this;
+                this.model.unset('industryFilteredArray');
+                this.model.unset('selectedIndustry');
+                view.undelegateEvents();
+            },
             'change #select': function(event) {
                 industryFilteredArray = [];
                 var view = this;
@@ -177,9 +183,6 @@
                 filteredDataArray.push(newCustomer);
 
                 console.log(filteredDataArray);
-                var view = this;
-
-                view.undelegateEvents();
 
                 window.location.hash = 'main';
 
